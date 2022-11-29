@@ -1,15 +1,18 @@
-% solution for d^2u/dx^2 = k(constant) for dirichlet boundary conditions
-% u(x1) = u1 and u(x2) = u2
+% solution for d^2u/dx^2 = k*x(constant) for dirichlet boundary conditions
+% u(x1) = u1 and u(x2) = u2 using Galerkin's method
 
 clear; clc;
 syms x;
 
 n = 3;
+k = 5;
+fx = k*x ;
+
 x1 = 0;
 x2 = 1;
 u1 = 0;
-u2 = 0;
-k = 5;
+u2 = 1;
+
 
 phi_0 = (u2-u1)*(x-x1)/(x2-x1) + u1 ; % phi_0(x1) = u1 and phi_0(x2) = u2
 
@@ -17,7 +20,7 @@ phi_0 = (u2-u1)*(x-x1)/(x2-x1) + u1 ; % phi_0(x1) = u1 and phi_0(x2) = u2
 
 phi_array = create_phi(n, x, x1, x2);
 B = createB(n, phi_array, x, x1, x2);
-f = createF(n, phi_array, x1, x2, k);
+f = createF(n, phi_array,phi_0, x1, x2, x, fx);
     
 c = pinv(B)*f;
 hold on;
@@ -51,12 +54,12 @@ function [B] = createB(n, phi_array, x, x1, x2)
 end
 
 
-function [f] = createF(n, phi_array, x1, x2, k)
+function [f] = createF(n, phi_array,phi_0, x1, x2, x, fx)
     
     f = zeros(n, 1) ;
 
     for i=1:n
-        f(i) = linearFunctional(phi_array, i, x1, x2, k);
+        f(i) = linearFunctional(phi_array, phi_0, i, fx, x, x1, x2);
     end
 end
 
@@ -71,17 +74,23 @@ function [phi_array] = create_phi(n, x, x1, x2)
 
 end
 
+
 function [B_ij] = bilinearFunctional(phi_array, i, j, x, x1, x2)
     phi_i = phi_array(i);
     phi_j = phi_array(j);
 
-    dDxi = diff(phi_i, x);
-    dDxj = diff(phi_j, x);
 
-    B_ij = int(dDxi*dDxj, x1, x2);
+    B_ij = int(linearOperator(phi_j, x)*phi_i, x1, x2);
+
 end
 
 
-function [f_i] = linearFunctional(phi_array, i,x1, x2, k)
-    f_i = -k*int(phi_array(i), x1, x2);
+function [f_i] = linearFunctional(phi_array, phi_0, i, fx, x, x1, x2)
+    phi_i = phi_array(i);
+
+    f_i = int((phi_i*fx - phi_i*linearOperator(phi_0, x)), x1, x2);
+end
+
+function [D] = linearOperator(y, x)
+    D = diff(y, x, 2) ;
 end
