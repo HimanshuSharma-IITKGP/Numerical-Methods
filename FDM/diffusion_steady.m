@@ -15,14 +15,11 @@ deltaY = y_dom_size/(y_num_points - 1) ;
 
 
 
-
-T(1:x_num_points, 1) = 0*ones(x_num_points, 1) ;
-T(1:x_num_points, y_num_points) = 0*ones(x_num_points, 1);
-
-T(x_num_points, 1:y_num_points) = 0*ones(1, y_num_points); 
-T(1, 1:y_num_points) = 1*ones(1, y_num_points); 
+T = zeros(x_num_points, y_num_points) ;
+T(1, :) = 1;
 
 T_new = zeros(x_num_points, y_num_points) ;
+T_new(1, :) = 1;
 
 
 error_now = 1;
@@ -35,7 +32,6 @@ while error_now > error_req
     for i=2:(x_num_points - 1)
         for j=2:(y_num_points - 1)
             a = 0.25*(T(i+1, j) + T(i-1, j) + T(i, j+1) + T(i, j-1));
- 
             T_new(i, j) = a ;
         end
     end
@@ -52,5 +48,9 @@ while error_now > error_req
 end
 
 %% Plotting
-disp(T) ;
-disp(T_new)
+disp(T_new);
+x_dom = 0:deltaX:x_dom_size ;
+y_dom = 0:deltaY:y_dom_size ;
+[X,Y] = meshgrid(x_dom,y_dom);
+contourf(X, Y, T_new) ;
+colorbar

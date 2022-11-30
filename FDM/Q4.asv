@@ -1,0 +1,22 @@
+% Solution of the ODE d^2u/dx^2 = k*x
+% with the boundary condition u(a) = u1 and u(b) = u2 using FDM
+
+%%
+clear;
+clc;
+
+a = 0;
+b = 1;
+u1 = 0;
+u2 = 1;
+k = 5;
+n = 30;
+
+u(1) = u1;
+u(n) = u2;
+
+u_new(1) = u1;
+u_new(n) = u2;
+
+error_now = 1;
+error_mag = 

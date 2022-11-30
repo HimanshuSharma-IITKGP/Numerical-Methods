@@ -8,7 +8,7 @@ n = 3;
 x1 = 0;
 x2 = 1;
 u1 = 0;
-u2 = 0;
+u2 = 1;
 k = 5;
 
 phi_0 = (u2-u1)*(x-x1)/(x2-x1) + u1 ; % phi_0(x1) = u1 and phi_0(x2) = u2
@@ -23,7 +23,10 @@ c = pinv(B)*f;
 hold on;
 axis on;
 sol = createSolution(c, phi_array, phi_0, n);
+figure ;
 fplot(x, sol, linewidth=2);
+xlim([0, 1]);
+ylim([-0.5, 1]) ;
 uSol = matlabFunction(sol);
 
 
