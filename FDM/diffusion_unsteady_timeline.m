@@ -1,4 +1,5 @@
-% solution of the 2-D unsteady diffusion Equation
+% solution of equation (d^2T/dt^2) - (d^2T/dt^x) - (d^2T/dt^y)  = 0; (all
+% the derivatives are partial) in a square of size 1 by 1 ;
 % Boundary conditions : T = 1 at the upper boundary and T = 0 at other 3
 % boundaries
 % Initial  condition  : T = 0 initially everywhere

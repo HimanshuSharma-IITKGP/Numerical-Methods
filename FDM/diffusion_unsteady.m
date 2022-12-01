@@ -3,6 +3,7 @@
 % Boundary conditions : T = 1 at the upper boundary and T = 0 at other 3
 % boundaries
 % Initial  condition  : T = 0 initially everywhere
+
 clear ;
 close all;
 clc;
