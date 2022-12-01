@@ -1,5 +1,4 @@
-% solution of equation (d^2T/dt^2) - (d^2T/dt^x) - (d^2T/dt^y)  = 0; (all
-% the derivatives are partial) in a square of size 1 by 1 ;
+% solution of equation (d^2T/dt^2) - (d^2T/dt^x) - (d^2T/dt^y)  = 0;
 % Boundary conditions : T = 1 at the upper boundary and T = 0 at other 3
 % boundaries
 % Initial  condition  : T = 0 initially everywhere
@@ -67,8 +66,3 @@ y_dom = x_dom ;
 [X,Y] = meshgrid(x_dom,y_dom);
 contourf(X, Y, T_new) ;
 colorbar
-title('Steady State Solution')
-
-figure ;
-plot( 1:iterations, error_track) ;
-title('Error vs Iteration Number')

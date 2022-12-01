@@ -10,9 +10,9 @@ clc;
 %% initialization
 
 dom_size = 1;
-n_points = 51;
+n_points = 6;
 h = dom_size/(n_points - 1) ;
-dt = 0.0001 ;
+dt = 0.01 ;
 alpha = dt/(h*h) ;
 
 
@@ -74,4 +74,5 @@ for iter=1:iterations
     disp(iter);
     pause(0.2) ;
 end
+
 
