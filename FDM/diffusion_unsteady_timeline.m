@@ -1,3 +1,8 @@
+% solution of the 2-D unsteady diffusion Equation
+% Boundary conditions : T = 1 at the upper boundary and T = 0 at other 3
+% boundaries
+% Initial  condition  : T = 0 initially everywhere
+
 clear ;
 close all;
 clc;
@@ -5,10 +10,10 @@ clc;
 %% initialization
 
 dom_size = 1;
-n_points = 6;
+n_points = 51;
 h = dom_size/(n_points - 1) ;
- dt = 0.01 ;
- alpha = dt/(h*h) ;
+dt = 0.0001 ;
+alpha = dt/(h*h) ;
 
 
 T = zeros(n_points, n_points) ;

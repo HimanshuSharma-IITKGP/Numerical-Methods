@@ -1,3 +1,7 @@
+% solution of the 2-D unsteady diffusion Equation
+% Boundary conditions : T = 1 at the upper boundary and T = 0 at other 3
+% boundaries
+% Initial  condition  : T = 0 initially everywhere
 clear ;
 close all;
 clc;
@@ -7,12 +11,12 @@ clc;
 dom_size = 1;
 n_points = 51;
 h = dom_size/(n_points - 1) ;
- dt = 0.0001 ;
- alpha = dt/(h*h) ;
+dt = 0.0001 ;
+alpha = dt/(h*h) ;
 
 
-T = zeros(n_points, n_points) ;
-T(1, :) = 1;
+T = zeros(n_points, n_points) ; 
+T(1, :) = 1; 
 
 T_new = zeros(n_points, n_points) ;
 T_new(1, :) = 1;
@@ -55,10 +59,10 @@ while error_mag > error_req
 end
 
 %% Plotting
-disp(T_new);
-x_dom = 0:h:dom_size ;
 
+x_dom = 0:h:dom_size ;
 y_dom = x_dom ;
+
 [X,Y] = meshgrid(x_dom,y_dom);
 contourf(X, Y, T_new) ;
 colorbar
