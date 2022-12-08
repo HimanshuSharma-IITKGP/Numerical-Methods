@@ -1,5 +1,5 @@
 % solution of d^2u/dx^2 = k*x (constant) using FDM
-% with boundary conditions u(a) = u0 and u(b) = p0 using FDM
+% with boundary conditions u(a) = u0 and u'(b) = p0 using FDM
 
 %%
 clear;
@@ -10,7 +10,7 @@ a = 0;
 b = 1;
 u0 = 1;
 p0 = 1;
-k = 5;
+k = 5;S
 n = 30;
 
 x_domain = b - a;
