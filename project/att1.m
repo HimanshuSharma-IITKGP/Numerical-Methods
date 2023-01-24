@@ -53,6 +53,8 @@ for iter = 1:n_iterations-1
 end
 
 plot(r_tilde, c_tilde(n_iterations, :), linewidth=2);
+title('Final Concentration', 'Color','blue');
+
 
 %%
 
@@ -68,11 +70,32 @@ for iter = 1:n_iterations-1
     for i = 2:n_points-1
          l = 1/r_tilde(i)^2 + 2/h^2 ;
          u_tilde(iter+1, i) = ( (u_tilde(iter, i+1) +  u_tilde(iter, i-1))/(h^2) +  (u_tilde(iter, i+1)- u_tilde(iter, i-1))/(2*h*r_tilde(i)) - alpha*(c_tilde(iter, i+1)-c_tilde(iter, i-1))/(2*h) )/l ;
+    
+%          plot(r_tilde, u_tilde(iter, :), linewidth=2);
+%          pause(0.01);
     end
 end
 
 figure
 plot(r_tilde, u_tilde(n_iterations, :), linewidth=2) ;
+title('Displacement', 'Color', 'blue')
 
+%%
+sigma_rr_tilde = zeros(1, n_points) ;
+sigma_tt_tilde = zeros(1, n_points) ;
+epsilon_rr = u_tilde(n_iterations, n_points)/r_tilde(n_points);
+epsilon_tt = epsilon_rr ;
 
+for i = 1:n_points
+    a = c_tilde(n_iterations, i)*omega*c_ref/3 ;
+    sigma_rr_tilde(i) = (nu*epsilon_tt + (1-nu)*epsilon_rr - a*(1+nu))/((1+nu)*(1-2*nu)) ;
+    sigma_tt_tilde(i) = (nu*epsilon_rr + (1-nu)*epsilon_tt - a*(1+nu))/((1+nu)*(1-2*nu)) ;
+end
+
+figure
+plot(r_tilde, sigma_tt_tilde, linewidth=2) ;
+title('Hoop Stress', 'Color', 'Blue')
+figure
+plot(r_tilde, sigma_tt_tilde, linewidth=2) ;
+title('Radial Stress', 'Color', 'Blue');
 

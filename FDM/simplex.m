@@ -3,19 +3,20 @@ clc
 close all
 
 % coefficients of decision variables for less than equal to and equal to constraints 
-a_matrix = [1 0 ; 0 2; 3 2];
+a_matrix = [0 0.1 ; 0.25 0; 3 2];
 % positive rhs
-b_vector = [4 ; 12; 18];
+b_vector = [200 ; 800; 12000];
 % row vector containing the indices of the equations which are equal to constraint
-row_index_for_equality_constraint = [3, -1] ;
+row_index_for_equality_constraint = [-1, -1] ;
 % coefficients of the z = f(x)
-objective_function_coefficients_row_vector = [3 5] ;
+objective_function_coefficients_row_vector = [0.2 0.1] ;
 
 
 
 [basis, rhs] = optimize( a_matrix, b_vector, objective_function_coefficients_row_vector, row_index_for_equality_constraint ) ;
 disp(rhs)
 disp(basis)
+
 
 function [basis_variables_index_vector, rhs_vector] = optimize(a_matrix, b_vector, objective_function_coefficients_row_vector, row_index_for_equality_constraint)
 

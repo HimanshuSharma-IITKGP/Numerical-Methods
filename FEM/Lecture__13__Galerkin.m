@@ -17,8 +17,11 @@ hold all;
 axis on;
 sol = createSolution(c, phi_array, phi_0, n);
 fplot(x, sol, linewidth=2);
+xlim([0, 1]);
+ylim([0, 1.5]);
 uSol = matlabFunction(sol);
 exact_sol = ((2*cos(1-x) - sin(x))/cos(1)) + x^2 - 2;
+figure
 fplot(x, exact_sol);
 xlim([0, 1]);
 ylim([0, 1.5]);
