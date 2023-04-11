@@ -118,7 +118,3 @@ plot(r_tilde, sigma_tt_tilde(n_iterations, :), linewidth=2) ;
 title('Radial Stress', 'Color', 'Blue');
 
 
-
-
-
-

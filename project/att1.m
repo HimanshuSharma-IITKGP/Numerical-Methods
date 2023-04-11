@@ -1,7 +1,7 @@
 %%
 clear;
 clc;
-close all;
+
 
 D_0 = 16;
 c_ref = 53.98e27;

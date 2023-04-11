@@ -1,0 +1,49 @@
+clear;
+clc;
+
+A = [0 2 1; 4 1 -1; -2 3 -3];
+b = [5; -3; 5];
+
+eliminate(A, b)
+
+function [C] = eliminate(A, b)
+    C = [A, b];
+    n = size(A, 1);
+
+    for i = 1:n-1
+
+                % Pivoting %
+%                 l = max(abs(C(i:n, i)));
+%                 s = find(C(:, i) == l);
+%                 [C(i, :), C(s, :)] = deal(C(s, :), C(i, :));
+                %  ***  %
+
+                                % Scaled Pivoting
+        max = -1;
+        s = -1;
+        for g=i:n
+%             temp = C(g, i)/max(abs(C(g, :)));
+            temp = 0;
+            disp("Hello")
+            if (temp>max)
+                max = temp;
+                s = g;
+            end
+        end
+
+        disp(s);
+        [C(i, :), C(s, :)] = deal(C(s, :), C(i, :));
+                                % *** %
+        for j = i+1:n
+                em =  C(j, i)/C(i, i) ;
+                C(j, :) = C(j, :) - em*C(i, :);
+        end
+    end
+end
+
+function [m] = getMax(X)
+    m = -1;
+    for i = 1:size(X)
+        if(m>X(i))
+            temp = 
+end
