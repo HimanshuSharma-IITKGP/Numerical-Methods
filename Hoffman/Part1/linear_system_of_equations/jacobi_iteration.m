@@ -9,6 +9,8 @@ X
 iter
 
 
+
+
 function [X_new, iter] = jacobi(A, b, X_0, conv)
     
     X = X_0;
