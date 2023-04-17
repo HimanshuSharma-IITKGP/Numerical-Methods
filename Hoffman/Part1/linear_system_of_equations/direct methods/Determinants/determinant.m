@@ -1,17 +1,14 @@
-clear;
-clc;
 
-A = [3 2 105; 2 -3 103; 1 1 3];
-b = [104; 98; 3];
-
-[C, o] = eliminate(A, b);
-[C]
-
-function [C, o] = eliminate(A, b)
-    C = [A, b];
-    n = size(A, 1);
+%  this algorithm computes the determinant by performing row operations on the matrix and  %
+%  to convert it to a diagonal matrix   %
+%  and then multiplying the diagonal terms %
+function [det] = determinant(C)
+    
+    n = size(C, 1);
     o = (1:n)';
     
+    det = 1;
+
     for i = 1:n-1
         max = -1;
         s = -1;
@@ -28,23 +25,20 @@ function [C, o] = eliminate(A, b)
         o(s) = temp;
     end
 
-    for i = 1:n-1
+   
+    for i = 1:n
         pivot_row_ind = o(i) ;
 
-        for j = i+1:n
+        for j = 1:n
+            if(i~=j)
                 em =  C(o(j), pivot_row_ind)/C(pivot_row_ind, pivot_row_ind) ;
                 C(o(j), :) = C(o(j), :) - em*C(pivot_row_ind, :);
+            end
         end
+        det = det*C(i, i);
     end
+
+    disp(C)
 end
 
 
-
-function [m] = getMax(X)
-    m = -1;
-    for i = 1:size(X)
-        if(m<X(i))
-            m = X(i);
-        end
-    end
-end

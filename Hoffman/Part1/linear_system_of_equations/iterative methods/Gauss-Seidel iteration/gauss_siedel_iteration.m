@@ -1,14 +1,6 @@
-clear;
-clc;
 
-A = [4 -1 0 1 0; -1 4 -1 0 1; 0 -1 4 -1 0; 1 0 -1 4 -1; 0 1 0 -1 4];
-b = [100, 100, 100, 100, 100]' ;
-X_0 = [0 0 0 0 0]';
-[X, iter] = gauss_siedel(A, b, X_0, 1e-10);
-X
-iter
 
-function [X_new, iter] = gauss_siedel(A, b, X_0, conv)
+function [X_new, iter] = gauss_siedel_iteration(A, b, X_0, conv)
     
     X = X_0;
     X_new = X;
